@@ -1,0 +1,36 @@
+{
+ 
+
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "hello-world-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/helloWorld/HelloWorldWebPart.js",
+          "manifest": "./src/webparts/helloWorld/HelloWorldWebPart.manifest.json",
+          "outputPath": "./dist/mywebpart",
+          "styles": [
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "your custom styles or other CSS files",
+            "yourWebPartNameStrings"
+          ],
+          "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+            "your custom scripts or other JavaScript files"
+          ]
+        }
+      ]
+    }
+  },
+  "externals": {
+    "bootstrap": {
+      "path": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "globalName": "bootstrap"
+    }
+  },
+  "localizedResources": {
+    "HelloWorldWebPartStrings": "lib/webparts/helloWorld/loc/{locale}.js"
+  }
+
+}

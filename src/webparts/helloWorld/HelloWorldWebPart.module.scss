@@ -1,0 +1,181 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.helloWorld {
+  overflow: hidden;
+  padding: 1em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcomeImage {
+  width: 100%;
+  max-width: 420px;
+}
+
+.links {
+  a {
+    text-decoration: none;
+    color: "[theme:link, default:#03787c]";
+    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
+
+    &:hover {
+      text-decoration: underline;
+      color: "[theme:linkHovered, default: #014446]";
+      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+    }
+  }
+}
+.list {
+  color: #333333;
+  font-family: 'Segoe UI Regular WestEuropean', 'Segoe UI', Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  box-sizing: border-box;
+  margin: 10;
+  padding: 10;
+  line-height: 50px;
+  list-style-type: none;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.listItem {
+  color: #333333;
+  vertical-align: center;
+  font-family: 'Segoe UI Regular WestEuropean', 'Segoe UI', Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  *zoom: 1;
+  padding: 9px 28px 3px;
+  position: relative;
+}
+
+.marginal{
+  margin-bottom: 20px;
+}
+
+
+// #spListContainer {
+//   width: 100%; // Adjust the width as needed
+//   white-space: nowrap; // Prevent line breaks
+//   overflow: hidden; // Hide the overflow
+//   position: relative; // Create a relative position for absolute arrow buttons
+//   display: flex; // Make the children display in a row
+//   align-items: flex-start; // Align items to the top
+//   &::before, &::after {
+//     content: '◄'; // Left arrow symbol for before, and right arrow symbol for after
+//     font-size: 24px;
+//     position: absolute;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     background: rgba(255, 255, 255, 0.7); // Adjust button background
+//     cursor: pointer;
+//     width: 30px; // Adjust button width
+//     text-align: center;
+//     user-select: none; // Prevent text selection
+//   }
+//   &::before {
+//     left: 0; // Position the left arrow button
+//   }
+//   &::after {
+//     right: 0; // Position the right arrow button
+//   }
+// }
+
+// #spListContainer img {
+//   // Optional styling for the images inside the container
+//   max-width: 100%; // Ensure images don't exceed the container width
+//   height: auto; // Maintain the aspect ratio
+//   margin-right: 10px; // Add some spacing between images
+// }
+
+.spListContainer1{
+  background-color: burlywood;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.spListContainer1 img{
+
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+}
+
+.itemlist12{
+
+
+  margin-top:30px;
+
+ 
+
+  background-color: burlywood;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.itemlist12 img{
+
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+}
+
+
+
+
+
+
+
+// @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+// .helloWorld {
+//   overflow: hidden;
+//   padding: 1em;
+//   color: "[theme:bodyText, default: #323130]";
+//   color: var(--bodyText);
+//   &.teams {
+//     font-family: $ms-font-family-fallbacks;
+//   }
+// }
+
+// .welcome {
+//   text-align: center;
+// }
+
+// .welcomeImage {
+//   width: 100%;
+//   max-width: 420px;
+// }
+
+// .links {
+//   a {
+//     text-decoration: none;
+//     color: "[theme:link, default:#03787c]";
+//     color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
+
+//     &:hover {
+//       text-decoration: underline;
+//       color: "[theme:linkHovered, default: #014446]";
+//       color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+//     }
+//   }
+// }
