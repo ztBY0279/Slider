@@ -33,14 +33,14 @@ export interface ISPList {
   Name: string;
   Surname: string;
   Image: string;
+  description:string;
+  caption:string;
+  link:string;
 }
 
 export interface IHelloWorldWebPartProps {
-
   description: string;
   selectedList: string;
-
-
 }
 
 export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorldWebPartProps> {
@@ -76,8 +76,9 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
           <div>
             <h3>Select a list:</h3>
             <div>
-              <select id="listSelector" onchange="fetchListItems(this.value)">
-                <option value="">-- Select a list --</option>
+              <!--    <select id="listSelector" onchange="fetchListItems(this.value)"> -->
+              <select id="listSelector" >
+                <option value="" id = "somenew">-- Select a list  --</option>
               </select>
             </div>
             <div class="" id="itemList"></div>
@@ -106,11 +107,17 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
           </div>
         </div>
+        <p>this is working now:</p>
       </section>
     `;
 
     this._renderListAsync();
     this._loadLists();
+
+    const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
+  if (listSelector) {
+    listSelector.value = this.properties.selectedList || '';
+  }
   
    
   }
@@ -122,14 +129,30 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     // this._loadLists();
   
 
-  protected onInit(): Promise<void> {
+  // protected onInit(): Promise<void> {
      
-    this._selectedList = this.properties.selectedList || '';
+  //   //this._selectedList = this.properties.selectedList || '';
+  //   this._selectedList = this.properties.selectedList;
+  //   return this._getEnvironmentMessage().then(message => {
+  //     this._environmentMessage = message;
+  //   });
+  // }
 
-    return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
+
+  protected onInit(): Promise<void> {
+    this._selectedList = this.properties.selectedList || '';
+  
+    return Promise.all([
+      this._getEnvironmentMessage().then(message => {
+        this._environmentMessage = message;
+      }),
+      this._loadLists()
+    ]).then(() => {
+      this._renderListAsync();
     });
   }
+  
+  
 
   private _getListData(listName: string): Promise<ISPLists> {
     return this.context.spHttpClient.get(
@@ -142,14 +165,54 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   }
 
   private _renderList(items: ISPList[]): void {
+
+    console.log("items in _renderList() method:",items);
+
+    if(items.length === 0){
+      alert("list does not contain any data:");
+    }
+
+    if(items === null || items === undefined){
+      console.log(items);
+      alert("the list is empty:");
+    }
     const itemListElement = this.domElement.querySelector('.carousel-inner');
 
     if (itemListElement) {
       itemListElement.innerHTML = '';
 
-      items.forEach((item: ISPList) => {
+      items.forEach((item: ISPList,index:number) => {
+
+        console.log("the value of item.image is give back: ",item.Image);
+
+        if(item.Image === undefined || item.Image === null){
+          alert("image column is not exist: ");
+        }
+
+        console.log("item in foreach of items",item);
+
+        if(item === null || item === undefined){
+          alert("the list is empty:");
+        }
         const data = JSON.parse(item.Image);
         const imgurl = data.serverUrl + data.serverRelativeUrl;
+        console.log(imgurl);
+
+        // caption and description are added here:-
+
+        if(imgurl === undefined){
+           
+          alert("the list is typecally empty it does not contain Images:");
+
+        }
+
+        const caption = item.caption || ''; // Change this to the property you want as a caption
+      const description = item.description || ''; // Change this to the property you want as a description
+         
+
+      // active class:-
+     // const activeClass = index === 0 ? 'active' : '';
+
 
         // <img src="${imgurl}" alt="Image" /><br/>
         itemListElement.innerHTML += `
@@ -157,6 +220,12 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
         <div class="carousel-item active">
 
         <img src="${imgurl}"  class="d-block w-100"  alt="Image">
+
+        <div class="carousel-caption d-none d-md-block">
+            <h5 style="color:black;">this is caption value : ${caption}</h5>
+            <p style="color:black;">this is description value: ${description}</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
 
        </div>
         
@@ -177,9 +246,18 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
         const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
         if (listSelector) {
           data.value.forEach((list:ISPList) => {
+            
             listSelector.innerHTML += `<option value="${list.Title}">${list.Title}</option>`;
           });
         }
+
+        this.lists = data.value.map((list: ISPList) => {
+          return { key: list.Title, text: list.Title };
+        });
+        this.context.propertyPane.refresh();
+         
+
+
       }).catch(()=>{
         console.log("this is not working now");
       });
@@ -188,20 +266,95 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   private _renderListAsync():void{
     const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
     if (listSelector) {
+      listSelector.value = this._selectedList;
+
       listSelector.addEventListener('change', (event: Event) => {
+
+        console.log("this._renderListAsync method is called now:");
+        console.log("list selector value is :",listSelector.value);
+
         const selectedList = listSelector.value;
+
+        console.log("the length of selectedList: ",selectedList.length);
+
+        console.log("the selected list itself now: ",selectedList);
+
+        console.log("the value of selectedlist is :",selectedList);
+
+
         if (selectedList) {
+          this._selectedList = selectedList;
           this._getListData(selectedList).then((response) => {
             this._renderList(response.value);
           }).catch(()=>{
             console.log("this is not working:");
           });
+           
+          this.properties.selectedList = selectedList;
+           this.context.propertyPane.refresh();
+
          }// else {
         //   this.domElement.querySelector('#itemList').innerHTML = '';
         // }
       });
     }
   }
+
+
+  protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: string, newValue: string): void {
+    if (propertyPath === 'selectedList' && newValue) {
+      this._selectedList = newValue;
+  
+      // Update the main screen dropdown when PropertyPane dropdown changes
+      const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
+      if (listSelector) {
+        listSelector.value = newValue;
+      }
+     const somenewOption = this.domElement.querySelector("#somenew") as HTMLOptionElement;
+     console.log(somenewOption);
+     console.log(somenewOption.innerHTML);
+     
+     console.log("the new value is :",newValue);
+     somenewOption.innerHTML = newValue;
+     somenewOption.innerText = newValue;
+     console.log("somenewoption innerthml after new value become:",somenewOption.innerHTML);
+     console.log("the innerText property:- ",somenewOption.innerText);
+
+    //  somenewOption.innerText = newValue;
+      // Trigger the rendering of the list asynchronously
+
+     // this._loadLists();
+      this._getListData(newValue).then((response) => {
+        this._renderList(response.value);
+      }).catch(() => {
+        console.log("Error fetching list items");
+      });
+    }
+  }
+  
+
+  // protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: string, newValue: string): void {
+  //   if (propertyPath === 'selectedList' && newValue) {
+  //     this._selectedList = newValue;
+  
+  //     // Update the main screen dropdown when PropertyPane dropdown changes
+  //     const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
+  //     if (listSelector) {
+  //       listSelector.value = newValue;
+  //     }
+  
+  //     // Trigger the rendering of the list asynchronously
+  //     this._renderListAsync();
+  //   }
+  // }
+  
+
+
+  
+  
+
+
+  
 
   private _getEnvironmentMessage(): Promise<string> {
     if (!!this.context.sdks.microsoftTeams) {
@@ -260,8 +413,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
                 }),
                 PropertyPaneDropdown('selectedList', {
                   label: 'Select a list',
-                 
-                  options: this.lists,
+                  options:this.lists
+                 // options: this.domElement.querySelector('#listSelector') as HTMLSelectElement
                   //onRender: this._onRenderPropertyPaneDropdown.bind(this),
                   // onChanged: this.onPropertyPaneFieldChanged.bind(this),
                   // selectedKey: this._selectedList,
