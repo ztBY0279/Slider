@@ -333,27 +333,6 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   }
   
 
-  // protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: string, newValue: string): void {
-  //   if (propertyPath === 'selectedList' && newValue) {
-  //     this._selectedList = newValue;
-  
-  //     // Update the main screen dropdown when PropertyPane dropdown changes
-  //     const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
-  //     if (listSelector) {
-  //       listSelector.value = newValue;
-  //     }
-  
-  //     // Trigger the rendering of the list asynchronously
-  //     this._renderListAsync();
-  //   }
-  // }
-  
-
-
-  
-  
-
-
   
 
   private _getEnvironmentMessage(): Promise<string> {
@@ -378,6 +357,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     return Promise.resolve(this.context.isServedFromLocalhost ? 'Running in SharePoint locally' : 'Running in SharePoint');
   }
 
+
+
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
     if (!currentTheme) {
       return;
@@ -391,11 +372,15 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     }
   }
 
+
+
   protected get dataVersion(): Version {
 
     return Version.parse('1.0');
 
   }
+
+
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
@@ -411,15 +396,10 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
                 PropertyPaneTextField('description', {
                   label: 'Description'
                 }),
+
                 PropertyPaneDropdown('selectedList', {
                   label: 'Select a list',
                   options:this.lists
-                 // options: this.domElement.querySelector('#listSelector') as HTMLSelectElement
-                  //onRender: this._onRenderPropertyPaneDropdown.bind(this),
-                  // onChanged: this.onPropertyPaneFieldChanged.bind(this),
-                  // selectedKey: this._selectedList,
-                  
-                  
                 })
               ]
             }

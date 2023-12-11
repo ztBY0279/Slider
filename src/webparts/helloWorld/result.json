@@ -1,0 +1,181 @@
+[
+    {
+      "@odata.etag": "\"112\"",
+      "ItemInternalId": "80",
+      "ID": 80,
+      "Title": "Class 1",
+      "field_1": 3,
+      "Modified": "2023-12-08T08:49:10Z",
+      "Created": "2023-12-07T13:38:15Z",
+      "Author": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+        "DisplayName": "Shivani Kumari",
+        "Email": "shivani.kumari@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=shivani.kumari@zehntech.com",
+        "Department": null,
+        "JobTitle": "Software Engineer"
+      },
+      "Author#Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+      "Editor": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+        "DisplayName": "Shivani Kumari",
+        "Email": "shivani.kumari@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=shivani.kumari@zehntech.com",
+        "Department": null,
+        "JobTitle": "Software Engineer"
+      },
+      "Editor#Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+      "{Identifier}": "Lists%252fCapacity%252f80_.000",
+      "{IsFolder}": false,
+      "{Thumbnail}": {
+        "Large": null,
+        "Medium": null,
+        "Small": null
+      },
+      "{Link}": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/listform.aspx?PageType=4&ListId=d68965ea%2Dc0a1%2D4981%2Daf1b%2De16e813d80ee&ID=80&ContentTypeID=0x0100695C1D9BC33BF4428960970047D7A74B0018B106064F05644787AD519E3D8493D9",
+      "{Name}": "Class 1",
+      "{FilenameWithExtension}": "Class 1",
+      "{Path}": "Lists/Capacity/",
+      "{FullPath}": "Lists/Capacity/80_.000",
+      "{HasAttachments}": false,
+      "{VersionNumber}": "112.0"
+    },
+
+
+
+
+
+    {
+      "@odata.etag": "\"58\"",
+      "ItemInternalId": "81",
+      "ID": 81,
+      "Title": "Class 3",
+      "field_1": 6,
+      "Modified": "2023-12-08T08:49:11Z",
+      "Created": "2023-12-07T13:38:17Z",
+      "Author": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+        "DisplayName": "Shivani Kumari",
+        "Email": "shivani.kumari@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=shivani.kumari@zehntech.com",
+        "Department": null,
+        "JobTitle": "Software Engineer"
+      },
+
+      
+      "Author#Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+      "Editor": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+        "DisplayName": "Shivani Kumari",
+        "Email": "shivani.kumari@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=shivani.kumari@zehntech.com",
+        "Department": null,
+        "JobTitle": "Software Engineer"
+      },
+      "Editor#Claims": "i:0#.f|membership|shivani.kumari@zehntech.com",
+      "{Identifier}": "Lists%252fCapacity%252f81_.000",
+      "{IsFolder}": false,
+      "{Thumbnail}": {
+        "Large": null,
+        "Medium": null,
+        "Small": null
+      },
+      "{Link}": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/listform.aspx?PageType=4&ListId=d68965ea%2Dc0a1%2D4981%2Daf1b%2De16e813d80ee&ID=81&ContentTypeID=0x0100695C1D9BC33BF4428960970047D7A74B0018B106064F05644787AD519E3D8493D9",
+      "{Name}": "Class 3",
+      "{FilenameWithExtension}": "Class 3",
+      "{Path}": "Lists/Capacity/",
+      "{FullPath}": "Lists/Capacity/81_.000",
+      "{HasAttachments}": false,
+      "{VersionNumber}": "58.0"
+    },
+    {
+      "@odata.etag": "\"1\"",
+      "ItemInternalId": "116",
+      "ID": 116,
+      "Title": "Class2",
+      "field_1": 2,
+      "Modified": "2023-12-08T06:15:22Z",
+      "Created": "2023-12-08T06:15:22Z",
+      "Author": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+        "DisplayName": "Bharat Yadav",
+        "Email": "bharat.yadav@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=bharat.yadav@zehntech.com",
+        "Department": null,
+        "JobTitle": null
+      },
+      "Author#Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+      "Editor": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+        "DisplayName": "Bharat Yadav",
+        "Email": "bharat.yadav@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=bharat.yadav@zehntech.com",
+        "Department": null,
+        "JobTitle": null
+      },
+      "Editor#Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+      "{Identifier}": "Lists%252fCapacity%252f116_.000",
+      "{IsFolder}": false,
+      "{Thumbnail}": {
+        "Large": null,
+        "Medium": null,
+        "Small": null
+      },
+      "{Link}": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/listform.aspx?PageType=4&ListId=d68965ea%2Dc0a1%2D4981%2Daf1b%2De16e813d80ee&ID=116&ContentTypeID=0x0100695C1D9BC33BF4428960970047D7A74B0018B106064F05644787AD519E3D8493D9",
+      "{Name}": "Class2",
+      "{FilenameWithExtension}": "Class2",
+      "{Path}": "Lists/Capacity/",
+      "{FullPath}": "Lists/Capacity/116_.000",
+      "{HasAttachments}": false,
+      "{VersionNumber}": "1.0"
+    },
+    {
+      "@odata.etag": "\"1\"",
+      "ItemInternalId": "119",
+      "ID": 119,
+      "Title": "Class4",
+      "field_1": 1,
+      "Modified": "2023-12-08T08:37:08Z",
+      "Created": "2023-12-08T08:37:08Z",
+      "Author": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+        "DisplayName": "Bharat Yadav",
+        "Email": "bharat.yadav@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=bharat.yadav@zehntech.com",
+        "Department": null,
+        "JobTitle": null
+      },
+      "Author#Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+      "Editor": {
+        "@odata.type": "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedUser",
+        "Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+        "DisplayName": "Bharat Yadav",
+        "Email": "bharat.yadav@zehntech.com",
+        "Picture": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/UserPhoto.aspx?Size=L&AccountName=bharat.yadav@zehntech.com",
+        "Department": null,
+        "JobTitle": null
+      },
+      "Editor#Claims": "i:0#.f|membership|bharat.yadav@zehntech.com",
+      "{Identifier}": "Lists%252fCapacity%252f119_.000",
+      "{IsFolder}": false,
+      "{Thumbnail}": {
+        "Large": null,
+        "Medium": null,
+        "Small": null
+      },
+      "{Link}": "https://zehntechtechnologies.sharepoint.com/sites/IntranetDocument/_layouts/15/listform.aspx?PageType=4&ListId=d68965ea%2Dc0a1%2D4981%2Daf1b%2De16e813d80ee&ID=119&ContentTypeID=0x0100695C1D9BC33BF4428960970047D7A74B0018B106064F05644787AD519E3D8493D9",
+      "{Name}": "Class4",
+      "{FilenameWithExtension}": "Class4",
+      "{Path}": "Lists/Capacity/",
+      "{FullPath}": "Lists/Capacity/119_.000",
+      "{HasAttachments}": false,
+      "{VersionNumber}": "1.0"
+    }
+  ]
