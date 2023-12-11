@@ -1,12 +1,14 @@
 import { BaseClientSideWebPart, } from '@microsoft/sp-webpart-base';
-//import styles from './HelloWorldWebPart.module.scss';
+import styles from './HelloWorldWebPart.module.scss';
 import {
     type IPropertyPaneConfiguration,
    
     PropertyPaneTextField,
     PropertyPaneDropdown,
     //PropertyPaneDropdownOptionType,
-    IPropertyPaneDropdownOption
+    IPropertyPaneDropdownOption,
+  
+   
     
   } from '@microsoft/sp-property-pane';
 
@@ -39,8 +41,24 @@ export interface ISPList {
 }
 
 export interface IHelloWorldWebPartProps {
+
   description: string;
   selectedList: string;
+  caption: string;
+  Description: string;
+  link: string;
+ // description1:string;
+ // caption1: string;   // New property for image caption
+ // link1: string;      // New property for custom navigation URL
+
+ // for custom width and height:-
+
+imageWidth: number; // New property for controlling image width
+imageHeight: number; // New property for controlling image height
+transitionEffect:string;
+visualEffect: string;
+
+
 }
 
 export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorldWebPartProps> {
@@ -85,7 +103,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
             
 
-            <div id="carouselExample" class="carousel slide">
+            <div id="carouselExample" class="carousel slide fade zoom ${this.properties.visualEffect} ${styles.fade} ${styles.zoom} ${styles.slide}">
  
   <div class="carousel-inner">
     
@@ -108,8 +126,20 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
           </div>
         </div>
         <p>this is working now:</p>
+        <p>this is again working now:</p>
       </section>
     `;
+
+// fade in ,zoom and slide effect code :- 
+
+// Update the transition effect class based on user preferences or dynamic settings
+const carouselElement = this.domElement.querySelector('#carouselExample');
+if (carouselElement) {
+  // Remove existing transition classes before adding the new one
+  carouselElement.classList.remove('fade', 'slide', 'zoom');
+  carouselElement.classList.add(this.properties.transitionEffect);
+}
+  
 
     this._renderListAsync();
     this._loadLists();
@@ -123,20 +153,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   }
 
   
-   
-
-    // this._renderListAsync();
-    // this._loadLists();
   
-
-  // protected onInit(): Promise<void> {
-     
-  //   //this._selectedList = this.properties.selectedList || '';
-  //   this._selectedList = this.properties.selectedList;
-  //   return this._getEnvironmentMessage().then(message => {
-  //     this._environmentMessage = message;
-  //   });
-  // }
 
 
   protected onInit(): Promise<void> {
@@ -206,25 +223,26 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
         }
 
-        const caption = item.caption || ''; // Change this to the property you want as a caption
-      const description = item.description || ''; // Change this to the property you want as a description
+        const caption = item.caption; // Change this to the property you want as a caption
+      const description = item.description; // Change this to the property you want as a description
          
-
+     const Link = item.link;
       // active class:-
      // const activeClass = index === 0 ? 'active' : '';
-
+     console.log("the value of Link is: ",Link);
+   
 
         // <img src="${imgurl}" alt="Image" /><br/>
         itemListElement.innerHTML += `
 
-        <div class="carousel-item active">
+        <div class="carousel-item active ${this.properties.visualEffect}">
 
-        <img src="${imgurl}"  class="d-block w-100"  alt="Image">
+        <img src="${imgurl}"  class="d-block w-100" style="width: ${this.properties.imageWidth}px; height: ${this.properties.imageHeight}px;" alt="Image">
 
         <div class="carousel-caption d-none d-md-block">
-            <h5 style="color:black;">this is caption value : ${caption}</h5>
-            <p style="color:black;">this is description value: ${description}</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
+            <h5 style="color:black;" class = "${styles.caption} ">this is caption value : ${caption}</h5>
+            <p style="color:black;" class = "${styles.description}">this is description value: ${description}</p>
+            <a href="${Link}" class="btn btn-primary" target="_blank">Learn More</a>
         </div>
 
        </div>
@@ -233,6 +251,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
       });
     }
   }
+
+
 
   private _loadLists(): void {
     this.context.spHttpClient.get(
@@ -262,6 +282,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
         console.log("this is not working now");
       });
   }
+
+
 
   private _renderListAsync():void{
     const listSelector = this.domElement.querySelector('#listSelector') as HTMLSelectElement;
@@ -299,6 +321,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
       });
     }
   }
+
 
 
   protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: string, newValue: string): void {
@@ -372,8 +395,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
     }
   }
 
-
-
+  
   protected get dataVersion(): Version {
 
     return Version.parse('1.0');
@@ -400,9 +422,67 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
                 PropertyPaneDropdown('selectedList', {
                   label: 'Select a list',
                   options:this.lists
-                })
+                }),
+
+                PropertyPaneTextField('caption', {
+                  label: 'Caption',
+                  value:"some text1"
+                }),
+                PropertyPaneTextField('Description', {
+                  label: 'Description',
+                  value:"some text2"
+                }),
+                PropertyPaneTextField('link', {
+                  label: 'Link',
+                  value:this.properties.Description
+                }),
+
+               
+
+                
+
+
               ]
-            }
+            },
+
+            // for image height and width 
+            {
+              groupName: 'Group 2',
+              groupFields: [
+                // ... (existing fields)
+          
+                PropertyPaneTextField('imageWidth', {
+                  label: 'Image Width (in pixels)',
+                  value: '300', // Set a default value or retrieve from a property
+                }),
+                PropertyPaneTextField('imageHeight', {
+                  label: 'Image Height (in pixels)',
+                  value: '200', // Set a default value or retrieve from a property
+                }),
+
+                PropertyPaneDropdown('transitionEffect', {
+                  label: 'Transition Effect',
+                  options: [
+                    { key: 'fade', text: 'Fade' },
+                    { key: 'slide', text: 'Slide' },
+                    { key: 'zoom', text: 'Zoom' },
+                  ],
+                }),
+
+                PropertyPaneDropdown('visualEffect', {
+                  label: 'Visual Effect',
+                  options: [
+                    { key: 'none', text: 'None' },
+                    { key: 'filter1', text: 'Filter 1' },
+                    { key: 'filter2', text: 'Filter 2' },
+                    // Add more options as needed
+                  ],
+                })
+                
+
+              ],
+            },
+
           ]
         }
       ]
@@ -410,21 +490,28 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   }
 
 
-  // protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: string, newValue: string): void {
-  //   if (propertyPath === 'selectedList' && newValue) {
-  //     this._selectedList = newValue;
-  //     this.render(); // Trigger a re-render when the selected list changes
-  //   }
-  // }
-
- 
-
-
-
 
 
 
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

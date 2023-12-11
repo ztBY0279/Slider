@@ -65,6 +65,73 @@
 }
 
 
+/* Caption (Title) */
+.caption {
+  color: #333; /* Dark color, e.g., black or dark gray */
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+}
+
+/* Description (Body) */
+.description {
+  color: #666; /* Slightly lighter color, e.g., medium gray */
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+}
+
+
+// it is transition effect:- 
+
+.fade .carousel-inner .carousel-item {
+  //opacity:0;before
+  opacity: 1;
+  display: block; /* Add display property */
+  transition: opacity 4s ease-in-out;
+}
+
+.fade .carousel-inner .carousel-item.active {
+  // opacity :1 before;
+  opacity: 1;
+}
+
+.slide .carousel-inner {
+  display: flex; /* Add display property */
+  transition: transform 4s ease-in-out;
+}
+
+.slide .carousel-inner .carousel-item {
+  flex: 0 0 100%; /* Add flex property */
+}
+
+.slide .carousel-inner .carousel-item.active {
+  transform: translateX(0);
+}
+
+.zoom .carousel-inner .carousel-item {
+  transition: transform 4s ease-in-out;
+}
+
+.zoom .carousel-inner .carousel-item.active {
+  transform: scale(4);
+}
+
+
+.carousel-item {
+  &.filter1 {
+    // Define styles for Filter 1
+    filter: grayscale(50%); // Example: Apply a grayscale filter
+  }
+
+  &.filter2 {
+    // Define styles for Filter 2
+    filter: sepia(80%); // Example: Apply a sepia filter
+  }
+
+  // Add more styles as needed
+}
+
+
+
+
+
 // #spListContainer {
 //   width: 100%; // Adjust the width as needed
 //   white-space: nowrap; // Prevent line breaks
