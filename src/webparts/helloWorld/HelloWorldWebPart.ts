@@ -38,6 +38,7 @@ export interface ISPList {
   description:string;
   caption:string;
   link:string;
+  hyperLink:string;
 }
 
 export interface IHelloWorldWebPartProps {
@@ -76,12 +77,17 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
   public render(): void {
     this.domElement.innerHTML = `
       <section class="helloWorld ${!!this.context.sdks.microsoftTeams ? 'teams' : ''}">
+
+     <!--
         <div class="welcome">
           <img alt="" src="${this._isDarkTheme ? require('./assets/welcome-dark.png') : require('./assets/welcome-light.png')}" class="welcomeImage" />
           <h2>Well done, ${escape(this.context.pageContext.user.displayName)}!</h2>
           <div>${this._environmentMessage}</div>
         </div>
+
+        -->
         <div>
+        <!--
           <h3>Welcome to SharePoint Framework!</h3>
           <div>Web part description: <strong>${escape(this.properties.description)}</strong></div>
           <div>Loading from: <strong>${escape(this.context.pageContext.web.title)}</strong></div>
@@ -90,12 +96,16 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
           <div>this is running again:-</div>
 
+          -->
+
 
           <div>
+            <h2 style="color:blue; text-align:center;font-family:cursive;">Image Slider </h2>
+
             <h3>Select a list:</h3>
             <div>
               <!--    <select id="listSelector" onchange="fetchListItems(this.value)"> -->
-              <select id="listSelector" >
+              <select class="${styles.option}" id="listSelector" >
                 <option value="" id = "somenew">-- Select a list  --</option>
               </select>
             </div>
@@ -125,8 +135,7 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorld
 
           </div>
         </div>
-        <p>this is working now:</p>
-        <p>this is again working now:</p>
+       
       </section>
     `;
 
@@ -148,6 +157,25 @@ if (carouselElement) {
   if (listSelector) {
     listSelector.value = this.properties.selectedList || '';
   }
+
+
+   // Get the number of items in the slider
+   const numItems = this.lists.length;
+
+   // Set a random starting point
+   const randomStartIndex = Math.floor(Math.random() * numItems);
+   console.log(randomStartIndex);
+  //  console.log("this is index value:- ",this.lists[randomStartIndex].index);
+  //  console.log("this is key value:- ",this.lists[randomStartIndex].key);
+  //  console.log("this is text value:- ",this.lists[randomStartIndex].text);
+  //  console.log("this is type value:- ",this.lists[randomStartIndex].type);
+
+   // Initialize the slider with the random starting point
+  //  this._getListData(this.lists[randomStartIndex].text).then((response) => {
+  //      this._renderList(response.value);
+  //  }).catch(() => {
+  //      console.log("Error fetching list items");
+  //  });
   
    
   }
@@ -183,14 +211,13 @@ if (carouselElement) {
 
   private _renderList(items: ISPList[]): void {
 
-    console.log("items in _renderList() method:",items);
-
+  
     if(items.length === 0){
       alert("list does not contain any data:");
     }
 
     if(items === null || items === undefined){
-      console.log(items);
+    
       alert("the list is empty:");
     }
     const itemListElement = this.domElement.querySelector('.carousel-inner');
@@ -200,8 +227,15 @@ if (carouselElement) {
 
       items.forEach((item: ISPList,index:number) => {
 
-        console.log("the value of item.image is give back: ",item.Image);
+    //     console.log("this is the value of item.hyperlink",item.hyperLink);
 
+    //  const httpLink = JSON.parse(item.hyperLink);
+    //  console.log(httpLink);
+    //  console.log(httpLink.Url);
+    //  console.log(httpLink.Description);
+
+     
+    
         if(item.Image === undefined || item.Image === null){
           alert("image column is not exist: ");
         }
@@ -213,7 +247,7 @@ if (carouselElement) {
         }
         const data = JSON.parse(item.Image);
         const imgurl = data.serverUrl + data.serverRelativeUrl;
-        console.log(imgurl);
+    
 
         // caption and description are added here:-
 
@@ -227,9 +261,7 @@ if (carouselElement) {
       const description = item.description; // Change this to the property you want as a description
          
      const Link = item.link;
-      // active class:-
-     // const activeClass = index === 0 ? 'active' : '';
-     console.log("the value of Link is: ",Link);
+    
    
 
         // <img src="${imgurl}" alt="Image" /><br/>
@@ -237,11 +269,11 @@ if (carouselElement) {
 
         <div class="carousel-item active ${this.properties.visualEffect}">
 
-        <img src="${imgurl}"  class="d-block w-100" style="width: ${this.properties.imageWidth}px; height: ${this.properties.imageHeight}px;" alt="Image">
+        <img src="${imgurl}" id="${styles.marginImgTop}" class="d-block w-100" style="width: ${this.properties.imageWidth}px; height: ${this.properties.imageHeight}px;" alt="Image">
 
         <div class="carousel-caption d-none d-md-block">
-            <h5 style="color:black;" class = "${styles.caption} ">this is caption value : ${caption}</h5>
-            <p style="color:black;" class = "${styles.description}">this is description value: ${description}</p>
+            <h5  class = "${styles.caption} ">this is caption value : ${caption}</h5>
+            <p style="color:black" class = "${styles.description}">this is description value: ${description}</p>
             <a href="${Link}" class="btn btn-primary" target="_blank">Learn More</a>
         </div>
 
@@ -463,7 +495,6 @@ if (carouselElement) {
                 PropertyPaneDropdown('transitionEffect', {
                   label: 'Transition Effect',
                   options: [
-                    { key: 'fade', text: 'Fade' },
                     { key: 'slide', text: 'Slide' },
                     { key: 'zoom', text: 'Zoom' },
                   ],

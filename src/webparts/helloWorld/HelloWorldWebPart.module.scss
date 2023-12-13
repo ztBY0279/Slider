@@ -10,6 +10,39 @@
   }
 }
 
+#marginImgTop{
+  margin-top: 15px;
+}
+
+.option{
+  width: 40%;
+  height: 40px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+
+  // copied code 
+
+  border: 2px solid #3498db;
+
+  /* Optionally add border-radius for rounded corners */
+  border-radius: 5px;
+
+  /* Set a specific border color when the select element is in focus */
+  border-color: #2980b9;
+
+  
+
+  
+}
+
+option:focus{
+
+  outline: none; /* Remove the default focus outline */
+  border-color: #2c3e50; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7); /* Add a subtle box shadow on focus */
+
+}
+
 .welcome {
   text-align: center;
 }
@@ -67,14 +100,18 @@
 
 /* Caption (Title) */
 .caption {
-  color: #333; /* Dark color, e.g., black or dark gray */
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+   color: #333; /* Dark color, e.g., black or dark gray */
+   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+
+ 
 }
 
 /* Description (Body) */
 .description {
-  color: #666; /* Slightly lighter color, e.g., medium gray */
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+   color: #666; /* Slightly lighter color, e.g., medium gray */
+   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7); /* White shadow for contrast */
+
+ 
 }
 
 
